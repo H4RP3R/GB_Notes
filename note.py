@@ -1,25 +1,26 @@
-import json
 import uuid
 from datetime import datetime
 
 
 class Note():
 
-    def __init__(self, title, text):
-        self.__id = uuid.uuid4()
-        self.__create_date = datetime.now()
-        self.__title = title
+    def __init__(self, title, text, uid=str(uuid.uuid4()), create_date=datetime.now().strftime("%m.%d.%Y %H:%M:%S")):
+        self.__id = uid
+        self.__create_date = create_date
+        self.__title = title.upper()
         self.__text = text
 
     def __str__(self):
-        time_fmt = self.__create_date.strftime("%m.%d.%Y %H:%M:%S")
         delimiter = '=' * 50
-        return f'{self.__title.upper()}\n {self.__text}\nid: {str(self.__id)[:8]}... | created: {time_fmt}\n{delimiter}'
+        return f'\n{self.__title}\n {self.__text}\nid: {self.__id[:8]}... created: {self.__create_date}\n{delimiter}'
+
+    def get_id(self):
+        return self.__id
 
     def to_json(self):
         return {
-            'id': str(self.__id),
-            'create_date': self.__create_date.strftime("%m.%d.%Y %H:%M:%S"),
+            'id': self.__id,
+            'create_date': self.__create_date,
             'title': self.__title,
-            'body': self.__text,
+            'message': self.__text,
         }
