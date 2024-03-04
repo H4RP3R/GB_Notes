@@ -1,8 +1,8 @@
 import argparse
-import json
 
 from note import Note
 from note_storage import NoteStorage
+from help_message import msg
 
 
 class App:
@@ -11,11 +11,7 @@ class App:
         self.storage = NoteStorage()
 
     def run(self):
-        parser = argparse.ArgumentParser(
-            description='A command line utility to store notes',
-            usage=' python3 notes_app.py add -t "note title" -m "note message"\
-                \n\tpython3 notes_app.py list\
-                \n\tpython3 notes_app.py delete -i <note_id/first_8_characters>')
+        parser = argparse.ArgumentParser(description='A command line utility to store notes', usage=msg)
         choices = ['add', 'list', 'delete', 'update']
         parser.add_argument('command', help='add new note, list all notes, delete note, update note', choices=choices)
         parser.add_argument('-t', '--title', metavar='', type=str, help='note title', default='No title')
@@ -31,7 +27,7 @@ class App:
             case 'delete':
                 self.delete(args)
             case 'update':
-                pass
+                self.update(args)
 
     def add(self, args):
         note = Note(title=args.title, text=args.msg)
@@ -45,6 +41,9 @@ class App:
 
     def delete(self, args):
         self.storage.delete(args.id)
+
+    def update(self, args):
+        self.storage.update(args)
 
 
 if __name__ == "__main__":

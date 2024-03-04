@@ -40,3 +40,16 @@ class NoteStorage:
             if note.get_id().startswith(note_id):
                 self.repository.remove(note)
         self.save()
+
+    def update(self, args):
+        if not args.id or len(args.id) < 8:
+            return
+
+        self.read()
+        for note in self.repository:
+            if note.get_id().startswith(args.id):
+                if args.title != 'No title':
+                    note.set_title(args.title)
+                if args.msg != 'Empty note':
+                    note.set_text(args.msg)
+        self.save()
