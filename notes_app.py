@@ -11,12 +11,12 @@ class App:
         self.storage = NoteStorage()
 
     def run(self):
-        parser = argparse.ArgumentParser(description='A command line utility to store notes', usage=msg)
+        parser = argparse.ArgumentParser(description='Command line note-taking utility', usage=msg)
         choices = ['add', 'list', 'delete', 'update', 'filter']
         parser.add_argument(
             'command', help='add new note, list all notes, delete note, update note, filter notes', choices=choices)
         parser.add_argument('-t', '--title', metavar='', type=str, help='note title', default='No title')
-        parser.add_argument('-m', '--msg', metavar='', type=str, help='note text', default='Empty note')
+        parser.add_argument('-m', '--msg', metavar='', type=str, help='note message', default='Empty note')
         parser.add_argument('-i', '--id', metavar='', type=str, help='note id')
         parser.add_argument('-d', '--date', metavar='', type=str, help='date for filter')
         args = parser.parse_args()
