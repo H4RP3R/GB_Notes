@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from note import Note
@@ -53,3 +54,18 @@ class NoteStorage:
                 if args.msg != 'Empty note':
                     note.set_text(args.msg)
         self.save()
+
+    def date_filter(self, date_str):
+        try:
+            datetime_obj = datetime.strptime(date_str, "%m.%d.%Y").date()
+        except (ValueError, TypeError):
+            return
+
+        self.read()
+        filtered_notes = []
+        for note in self.repository:
+            note_date = datetime.strptime(note.get_create_date(), "%m.%d.%Y %H:%M:%S").date()
+            if note_date == datetime_obj:
+                filtered_notes.append(note)
+
+        return filtered_notes

@@ -19,6 +19,9 @@ class Note():
     def get_id(self):
         return self.__id
 
+    def get_create_date(self):
+        return self.__create_date
+
     def set_title(self, new_title):
         self.__title = new_title
         self.update_create_date()

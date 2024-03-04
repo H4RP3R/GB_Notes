@@ -12,11 +12,13 @@ class App:
 
     def run(self):
         parser = argparse.ArgumentParser(description='A command line utility to store notes', usage=msg)
-        choices = ['add', 'list', 'delete', 'update']
-        parser.add_argument('command', help='add new note, list all notes, delete note, update note', choices=choices)
+        choices = ['add', 'list', 'delete', 'update', 'filter']
+        parser.add_argument(
+            'command', help='add new note, list all notes, delete note, update note, filter notes', choices=choices)
         parser.add_argument('-t', '--title', metavar='', type=str, help='note title', default='No title')
         parser.add_argument('-m', '--msg', metavar='', type=str, help='note text', default='Empty note')
         parser.add_argument('-i', '--id', metavar='', type=str, help='note id')
+        parser.add_argument('-d', '--date', metavar='', type=str, help='date for filter')
         args = parser.parse_args()
 
         match args.command:
@@ -28,6 +30,8 @@ class App:
                 self.delete(args)
             case 'update':
                 self.update(args)
+            case 'filter':
+                self.date_filter(args)
 
     def add(self, args):
         note = Note(title=args.title, text=args.msg)
@@ -44,6 +48,12 @@ class App:
 
     def update(self, args):
         self.storage.update(args)
+
+    def date_filter(self, args):
+        filtered_notes = self.storage.date_filter(args.date)
+        if filtered_notes:
+            for note in filtered_notes:
+                print(note)
 
 
 if __name__ == "__main__":
