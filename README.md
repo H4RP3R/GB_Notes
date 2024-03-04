@@ -1,20 +1,20 @@
 # Notes
 Command line note-taking utility
 ### Usage
-```console
-$ python3 notes_app.py add -t "note title" -m "note message"
+```bash
+python3 notes_app.py add -t "note title" -m "note message"
 ```
-```console
-$ python3 notes_app.py list
+```bash
+python3 notes_app.py list
 ```
-```console
-$ python3 notes_app.py delete -i <note_id>
+```bash
+python3 notes_app.py delete -i <note_id>
 ```
-```console
-$ python3 notes_app.py update -i <note_id> -t "new title" -m "new message"
+```bash
+python3 notes_app.py update -i <note_id> -t "new title" -m "new message"
 ```
-```console
-$ python3 notes_app.py filter -d <dd.mm.yyy>
+```bash
+python3 notes_app.py filter -d <dd.mm.yyy>
 ```
 ### Positional arguments
 | Argument | Description |
