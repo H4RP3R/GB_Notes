@@ -69,3 +69,9 @@ class NoteStorage:
                 filtered_notes.append(note)
 
         return filtered_notes
+
+    def select_one_note(self, note_id):
+        self.read()
+        for note in self.repository:
+            if note.get_id().startswith(note_id):
+                return note

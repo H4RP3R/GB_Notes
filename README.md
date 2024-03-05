@@ -16,6 +16,9 @@ python3 notes_app.py update -i <note_id> -t "new title" -m "new message"
 ```bash
 python3 notes_app.py filter -d <dd.mm.yyy>
 ```
+```bash
+python3 notes_app.py show -i <note_id>
+```
 ### Positional arguments
 | Argument | Description |
 |---|---|
@@ -24,6 +27,7 @@ list | list all notes
 delete | delete note
 update | update note
 filter | filter notes
+show | show one selected note
 ### Options
 | Option | Description |  
 |---|---|
