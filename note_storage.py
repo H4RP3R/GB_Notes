@@ -71,6 +71,9 @@ class NoteStorage:
         return filtered_notes
 
     def select_one_note(self, note_id):
+        if not note_id:
+            return
+
         self.read()
         for note in self.repository:
             if note.get_id().startswith(note_id):
