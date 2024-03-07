@@ -14,7 +14,7 @@ class NoteStorage:
         self.repository.append(note)
 
     def save(self):
-        with open("notes.json", "w") as f:
+        with open('notes.json', 'w') as f:
             json.dump(self.repository, f, indent=4, sort_keys=False, ensure_ascii=False, default=Note.to_json)
 
     def read(self):
@@ -57,14 +57,14 @@ class NoteStorage:
 
     def date_filter(self, date_str):
         try:
-            datetime_obj = datetime.strptime(date_str, "%m.%d.%Y").date()
+            datetime_obj = datetime.strptime(date_str, '%m.%d.%Y').date()
         except (ValueError, TypeError):
             return
 
         self.read()
         filtered_notes = []
         for note in self.repository:
-            note_date = datetime.strptime(note.get_create_date(), "%m.%d.%Y %H:%M:%S").date()
+            note_date = datetime.strptime(note.get_create_date(), '%m.%d.%Y %H:%M:%S').date()
             if note_date == datetime_obj:
                 filtered_notes.append(note)
 

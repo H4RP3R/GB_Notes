@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Note():
 
-    def __init__(self, title, text, uid=str(uuid.uuid4()), create_date=datetime.now().strftime("%m.%d.%Y %H:%M:%S")):
+    def __init__(self, title, text, uid=str(uuid.uuid4()), create_date=datetime.now().strftime('%m.%d.%Y %H:%M:%S')):
         self.__id = uid
         self.__create_date = create_date
         self.__title = title
@@ -39,4 +39,4 @@ class Note():
         }
 
     def update_create_date(self):
-        self.__create_date = datetime.now().strftime("%m.%d.%Y %H:%M:%S")
+        self.__create_date = datetime.now().strftime('%m.%d.%Y %H:%M:%S')
